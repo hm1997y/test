@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+       
+
+
+        if (!window.plugin) {
+            window.plugin = {}
+        }
+        window.plugin.someFunction = (function () {
+            var arr = [];
+            var temp = {};
+
+            function someFunction(obj, str) {
+
+                Object.keys(obj).forEach((item) => {
+                    if (!check(obj[item])) {
+                        temp[item] = obj[item];
+
+                        someFunction(obj[item], str);
+                    } else if ((obj[item]).toString().indexOf(str) != -1) {
+                        arr.push(item)
+                        if (Object.keys(temp)) {
+                            Object.keys(temp).forEach(ele => {
+                                if (temp[ele][item] == obj[item]) {
+                                    var s = `${ele}.${item}`
+                                    arr.push(s)
+                                }
+                            })
+                        }
+                    }
+                })
+                return arr;
+            }
+
+
+            function check(data) {
+                if (!data || typeof data != 'object') {
+                    return data;
+                }
+            }
+
+            return someFunction;
+        })()
+        export const someFunction = plugin.someFunction
+
+        //         function someFunction(obj, str){
+
+        //                 Object.keys(obj).forEach((item) => {
+        //                     if(!check(obj[item])){
+        //                         temp[item] = obj[item];
+
+        //                         someFunction(obj[item], str);
+        //                     }else if((obj[item]).toString().indexOf(str) != -1){
+        //                         arr.push(item)
+        //                         console.log(Object.keys(temp) == true)
+        //                         if(Object.keys(temp)){
+        //                             Object.keys(temp).forEach(ele => {
+        //                             // console.log(temp[ele][item], obj[item])
+        //                             if(temp[ele][item] == obj[item]){
+        //                                 var s = `${ele}.${item}`
+        //                                 arr.push(s)
+        //                             }
+        //                         })
+        //                         }
+        //                     }
+        //                 })
+        //                 return arr;
+        //         }
+
+        // function someFunction(obj, str){
+        //        var arr = [];
+        //         var temp = {};
+        //         getResult(obj, str);
+        // }
+        // function check(data){
+        //     if(!data || typeof data != 'object'){
+        //        return data;
+        //     }
+        // }
+
+        var obj1 = {
+            name: 'wang',
+            age: 20,
+            address: {
+                'city': 'bejin',
+                country: 'china'
+            }
+        }
+        console.log(plugin.someFunction(obj1, 'i'))
+
+        // =================================================
+
+
+
+        // function someFunction(obj, str){
+        //     var arr = [];
+        //         Object.values(obj).forEach((item) => {
+        //             console.log(item)
+        //             if(!check(item)){
+
+        //                 someFunction(item, str);
+        //             }
+        //             else if(item.toString().indexOf(str) != -1){
+        //                 arr.push(obj["item"])
+        //             }
+        //             // else if(item.toString().indexOf(str.toString()) != -1){
+        //             //     console.log(item)
+        //             //     arr.push(obj[item])
+        //             // }
+        //         })
+        //         return arr;
+        // }
+
+
+
+
+
+        //  function someFunction(obj, str){
+        //     var arr = [];
+        //     var data;
+        //         Object.keys(obj).forEach((item) => {
+        //              console.log(obj[item], str, item.indexOf(str))
+        //             if(!check(item)){
+        //                 someFunction(item, str);
+        //             }else if(item.indexOf(str) > -1){
+        //                 arr.push(obj[item])
+        //             }
+        //         })
+        //         return arr;
+        // }
+
+
+
+         // function findKey(obj, value, compare = (a, b) => a === b) {
+
+        //     return Object.keys(obj).find(k => compare(obj[k], value))
+        // }
+
+        // var nameMap = {
+
+        //     'Afghanistan': '阿富汗',
+        //     'Angola': '安哥拉',
+        //     'Albania': '阿尔巴尼亚',
+        //     'Argentina': '阿根廷',
+        //     'Armenia': '亚美尼亚',
+        // }
+        // console.log(Object.keys(nameMap))
+
+        // console.log(findKey(nameMap, '阿富汗'))
+        // console.log(nameMap)
+
+        // console.log(check('obj1'))
+    </script>
+</body>
+
+</html>
