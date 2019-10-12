@@ -28,10 +28,19 @@
 
                         someFunction(obj[item], str);
                     } else if ((obj[item]).toString().indexOf(str) != -1) {
+                        
                         arr.push(item)
+                
                         if (Object.keys(temp)) {
                             Object.keys(temp).forEach(ele => {
                                 if (temp[ele][item] == obj[item]) {
+                                    arr.forEach((el, index) => {
+                                        if(el == item){
+                                            arr.splice(index, 1)
+                                        }
+                                        // console.log(arr)
+                                        return arr
+                                    })
                                     var s = `${ele}.${item}`
                                     arr.push(s)
                                 }
@@ -51,7 +60,22 @@
 
             return someFunction;
         })()
-        export const someFunction = plugin.someFunction
+   
+
+
+        var obj1 = {
+            name: 'wang',
+            age: 20,
+            an:'tianjing',
+            address: {
+                'city': 'bejin',
+                country: 'china'
+            }
+        }
+        console.log(plugin.someFunction(obj1, 'i'))
+
+
+
 
         //         function someFunction(obj, str){
 
@@ -88,15 +112,7 @@
         //     }
         // }
 
-        var obj1 = {
-            name: 'wang',
-            age: 20,
-            address: {
-                'city': 'bejin',
-                country: 'china'
-            }
-        }
-        console.log(plugin.someFunction(obj1, 'i'))
+        
 
         // =================================================
 
