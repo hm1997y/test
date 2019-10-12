@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var obj1 = {
+            name: 'wang',
+            age: 20,
+            an:'tianjing',
+            address: {
+                'city': 'bejin',
+                country: 'china'
+            }
+        }
+     
+
+
+console.log(someFunction(obj1, 'i'))
+
+        // 检测数据类型
+        function check(data) {
+            const type = Object.prototype.toString.call(data).match(/\[object (.*)\]/)[1];
+
+            return type === 'Object';
+        }
+
+        // 递归
+        function recursive(obj, search, result, key) {
+            Object.keys(obj).forEach(prop => {
+                const item = obj[prop];
+                const isObj = check(item);
+                const newKey = key ? key + '.' + prop : prop;
+
+                if (isObj) {
+                    recursive(item, search, result, newKey);
+                } else { // 基本数据
+                    if ((item + '').indexOf(search) !== -1) {
+                        result.push(newKey);
+                    }
+                }
+            });
+
+            return result;
+        }
+
+        function someFunction(obj, search) {
+            var result = [];
+
+            recursive(obj, search, result, '');
+
+            return result;
+        }
+        
+    </script>
+</body>
+</html>
